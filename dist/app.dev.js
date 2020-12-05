@@ -42,8 +42,8 @@ function showWeatherReport(weather) {
 
   if (weatherType.textContent == "Clear") {
     document.body.style.backgroundImage = "url('images/demoClear.jpg')";
-  } else if (weatherType.textContent == "Cloudy") {
-    document.body.style.backgroundImage = "url('images/demoCloudy.jpg')";
+  } else if (weatherType.textContent == "Clouds") {
+    document.body.style.backgroundImage = "url('images/demoClouds.jpg')";
   } else if (weatherType.textContent == "Rain") {
     document.body.style.backgroundImage = "url('images/demoRain.jpg')";
   } else if (weatherType.textContent == "Thunderstorm") {
