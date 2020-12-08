@@ -52,16 +52,19 @@ function showWeatherReport(weather) {
   let todayDate = new Date();
   date.innerText = dateManage(todayDate);
 
-  if (weatherType.textContent == "Clear") {
-    document.body.style.backgroundImage = "url('images/demoClear.jpg')";
+  if (weatherType.textContent == "Sunny") {
+    document.body.style.backgroundImage = "url('../images/demoSunny.jpg')";
+  } else if (weatherType.textContent == "Clear") {
+    document.body.style.backgroundImage = "url('../images/demoClear.jpg')";
   } else if (weatherType.textContent == "Clouds") {
-    document.body.style.backgroundImage = "url('images/demoClouds.jpg')";
+    document.body.style.backgroundImage = "url('../images/demoClouds.jpg')";
   } else if (weatherType.textContent == "Rain") {
-    document.body.style.backgroundImage = "url('images/demoRain.jpg')";
+    document.body.style.backgroundImage = "url('../images/demoRain.jpg')";
   } else if (weatherType.textContent == "Thunderstorm") {
-    document.body.style.backgroundImage = "url('images/demoThunderstorm.jpg')";
+    document.body.style.backgroundImage =
+      "url('../images/demoThunderstorm.jpg')";
   } else if (weatherType.textContent == "Snow") {
-    document.body.style.backgroundImage = "url('images/demoSnow.jpg')";
+    document.body.style.backgroundImage = "url('../images/demoSnow.jpg')";
   }
 }
 

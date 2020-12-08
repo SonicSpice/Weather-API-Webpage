@@ -5,19 +5,21 @@
 }
 
 body {
-  background-image: url("images/demoSunny.jpg");
+  background-image: url("../images/demoWeather.gif");
   height: 100vh;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: top center;
   font-family: Arial, Helvetica, sans-serif;
+  background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .app-main {
   width: 50vh;
   margin: 100px auto;
-  background-color: rgba(240, 248, 255, 0.6);
+  background-color: rgba(107, 30, 30);
   padding: 20px;
   text-align: center;
 }
@@ -28,7 +30,7 @@ body {
 
 .input-box {
   width: 100px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(243, 118, 118, 0.6);
   border: none;
   outline: none;
   color: #582233;
@@ -40,7 +42,7 @@ body {
 }
 
 .input-box:focus {
-  background-color: rgba(255, 255, 255);
+  background-color: rgba(226, 138, 138);
 }
 
 .weather-body {
@@ -48,7 +50,7 @@ body {
   padding: 20px;
   line-height: 2rem;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(243, 120, 120, 0.884);
   height: 50vh;
 }
 
