@@ -33,12 +33,15 @@ body {
   background-color: rgba(243, 118, 118, 0.6);
   border: none;
   outline: none;
-  color: #582233;
+  color: black;
   font-size: 1.2rem;
   height: 50px;
   border-radius: 5px;
   padding: 0 10px;
   text-align: center;
+}
+.input-box::placeholder {
+  color: black;
 }
 
 .input-box:focus {
@@ -78,5 +81,11 @@ body {
 .button1 {
   background-color: skyblue;
   font-size: 30px;
+  padding: 1%;
+}
+
+.button2 {
+  background-color: skyblue;
+  font-size: 22px;
   padding: 1%;
 }

@@ -5,67 +5,49 @@ const weatherApi = {
   baseUrl: "https://api.openweathermap.org/data/2.5/weather",
 };
 
-const searchInputBox = document.getElementById("input-box");
-
-// Event Listener Function on keypress
-searchInputBox.addEventListener("keypress", (event) => {
-  // if enter key is pressed, get weather report data for value of input-box
-
-  console.log("keypress", event);
-
-  if (event.key == "Enter") {
-    getWeatherReport(searchInputBox.value);
-    document.querySelector(".weather-body").style.display = "block";
-  }
-});
+const searchInputBox = document.getElementById("zip");
+const Textareabox = document.getElementById("feelings");
+const generatebutton = document.getElementById("generate");
+generatebutton.addEventListener("click", generate);
+function generate() {
+  getWeatherReport(searchInputBox.value);
+  document.querySelector(".weather-body").style.display = "block";
+}
 
 // Get Weather Report
-function getWeatherReport(city) {
-  fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)
-    .then((weather) => {
-      return weather.json();
-    })
-    .then((formatweatherjson) => {
-      showWeatherReport(formatweatherjson);
-    });
+async function getWeatherReport(zip) {
+  const rawData = await fetch(
+    `${weatherApi.baseUrl}?q=${zip}&appid=${weatherApi.key}&units=metric`
+  );
+  const formattedData = await rawData.json();
+  await fetch("http://localhost:4500/weather-data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      temperature: formattedData.main.temp,
+      date: formattedData.dt,
+      userResponse: Textareabox.value,
+    }),
+  });
+  const ProjectDataRaw = await fetch("http://localhost:4500/weather-data");
+  const ProjectDataFormatted = await ProjectDataRaw.json();
+  console.log(ProjectDataFormatted);
+  showWeatherReport(ProjectDataFormatted);
 }
 
 //Show Weather Report
 function showWeatherReport(weather) {
-  console.log("show weather report data ", weather);
-
-  let city = document.getElementById("city");
-  city.innerText = `${weather.name}, ${weather.sys.country}`;
-
   let temperature = document.getElementById("temp");
-  temperature.innerHTML = `${Math.round(weather.main.temp)}&deg;C`;
-
-  let minMaxTemp = document.getElementById("min-max");
-  minMaxTemp.innerHTML = `${Math.floor(
-    weather.main.temp_min
-  )}&deg;C (min)/ ${Math.ceil(weather.main.temp_max)}&deg;C (max) `;
-
-  let weatherType = document.getElementById(`weather`);
-  weatherType.innerText = `${weather.weather[0].main}`;
+  temperature.innerHTML = `${((9 / 5) * weather.temperature + 32).toFixed(
+    2
+  )}&deg;F`;
 
   let date = document.getElementById("date");
-  let todayDate = new Date();
-  date.innerText = dateManage(todayDate);
+  var todayDate = new Date(weather.date * 1000);
 
-  if (weatherType.textContent == "Sunny") {
-    document.body.style.backgroundImage = "url('../images/demoSunny.jpg')";
-  } else if (weatherType.textContent == "Clear") {
-    document.body.style.backgroundImage = "url('../images/demoClear.jpg')";
-  } else if (weatherType.textContent == "Clouds") {
-    document.body.style.backgroundImage = "url('../images/demoClouds.jpg')";
-  } else if (weatherType.textContent == "Rain") {
-    document.body.style.backgroundImage = "url('../images/demoRain.jpg')";
-  } else if (weatherType.textContent == "Thunderstorm") {
-    document.body.style.backgroundImage =
-      "url('../images/demoThunderstorm.jpg')";
-  } else if (weatherType.textContent == "Snow") {
-    document.body.style.backgroundImage = "url('../images/demoSnow.jpg')";
-  }
+  date.innerText = dateManage(todayDate);
+  let content = document.getElementById("content");
+  content.innerText = "USER RESPONSE: " + weather.userResponse;
 }
 
 //Date Manage

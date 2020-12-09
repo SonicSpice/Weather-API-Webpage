@@ -12,21 +12,32 @@
 <body>
     <div class="app-main">
         <div class="searchInputBox">
-            <input type="text" id="input-box" class="input-box" placeholder="Enter city
-            name..." autocomplete="off">
+            <input type="text" id="zip" class="input-box" placeholder="enter zip code here" autocomplete="off">
         </div>
+
+        <label for="w3review">User response:</label>
+        <div class="searchInputBox">
+            <textarea id="feelings" name="w3review" rows="4" cols="25">
+            </textarea>
+        </div>
+       
+        <button class="button2" id="generate">
+            Generate 
+        </button>
+        
         <div class="weather-body">
             <div class="location-details">
-                <div class="city" id="city">Florida, U.S </div>
-                <div class="date" id="date">11 November (Monday), 2020</div>
+                <div class="user" id="user-input"></div>
+                <div class="date" id="date">Date</div>
             </div>
         
         <div class="weather-status">
-                <div class="temp" id="temp">34&deg;C</div>
-                <div class="min-max" id="min-max">32&deg;C (min) / 34&deg;C (max)</div>
-                <div class="weather" id="weather">Clear</div>
+                <div class="temp" id="temp">Temp.</div>
                 <div class="img"></div>
             </div>
+            <div id="content" >  </div>
+
+
         </div>
     </div>
 
